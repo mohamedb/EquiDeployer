@@ -1,0 +1,6 @@
+/target/
+desktop.ini
+*.prefs
+*.ini
+.project
+.classpath
