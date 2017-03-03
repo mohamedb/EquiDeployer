@@ -1,6 +1,9 @@
 /target/
-desktop.ini
 *.prefs
-*.ini
-.project
-.classpath
+/.classpath
+/_classpath.xml
+/_gitignore
+/_project.xml
+/.project
+/file.tx 
+/file.txt
