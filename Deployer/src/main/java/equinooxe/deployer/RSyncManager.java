@@ -9,13 +9,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class RSyncManager {
-	static String rsyncExcludeFilePath = AppConfig.getPropValue("rsync.excludeFilePath");
 
 	public static boolean generateExcludeFile() {
 		boolean success=false;
 		Writer writer = null;
 		try {
-			writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(rsyncExcludeFilePath), "utf-8"));
+			writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(AppConfig.RSYNC_EXCLUDE_FILE_PATH), "utf-8"));
 			for (String fileToIgnore : filesToIgnore()) {
 				writer.write(fileToIgnore);
 				writer.write("\n");

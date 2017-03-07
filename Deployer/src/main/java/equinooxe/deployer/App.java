@@ -1,6 +1,9 @@
 package equinooxe.deployer;
 
+import equinooxe.job.DatabaseSchemaUpdateJob;
 import equinooxe.job.GitPullJob;
+import equinooxe.job.MySqlExporterJob;
+import equinooxe.job.RSyncronizeJob;
 
 /**
  *
@@ -10,15 +13,13 @@ public class App {
 
 	public static void main(String[] args) {
 		System.out.println("... Start deploy ...\n");
-		System.out.println("Source: " + AppConfig.SOURCES_FOLDER);
 		GitPullJob gitJob = new GitPullJob();
 		gitJob.run();
-		if(RSyncManager.generateExcludeFile()){
-			System.out.println(" .. OK ..");
-		}
-		else {
-			System.out.println("... ERROR.. Should start rollback");
-		}
+		new MySqlExporterJob().run();
+	    RSyncManager.generateExcludeFile(); 
+	    new RSyncronizeJob().run();
+	    new DatabaseSchemaUpdateJob();
+		 
 		DbManager.init();
 	}
 }

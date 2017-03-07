@@ -8,6 +8,7 @@ import equinooxe.deployer.CommandRunner;
 public class MySqlExporterJob implements Executable {
 	@Override
 	public String run() {
+		System.out.println("...Exporting Database ...");
 		return CommandRunner.run(getCommand(), shouldRollback());
 	}
 
